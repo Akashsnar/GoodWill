@@ -1,0 +1,93 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+<%-include("navAdmin")%>
+<style>
+    h1 {
+        font-size: 4vh;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 80vw;
+        margin: 0 auto;
+       border: .1rem solid #005e05;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #4cc54c;
+        color: #01351f;
+    }
+
+    tr:nth-child(even) {
+        background-color: #c6f5da;
+    }
+    tr:nth-child(odd) {
+        background-color: #caf1c2;
+    }
+
+    i.fa-remove {
+        color: red;
+        cursor: pointer;
+    }
+
+    i.fa-remove:hover {
+        color: darkred;
+    }
+</style>
+<br><br><br>
+<br><br><br>
+
+<center>
+    <h1>All Messages</h1>
+</center>
+<hr>
+<table>
+    <thead>
+        <tr>
+            <th>S.No.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <!-- <th>Reply</th> -->
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% let messageCount = 1; %>
+        <% contacts.forEach(contact => { %>
+
+        <tr>
+            <td>
+                <%= messageCount %></td>
+            <td><%= contact.name %>
+            </td>
+            <td><%= contact.email %></td>
+            <td><%= contact.message %></td>
+            <!-- <td>
+                <form method="GET" action="/reply">
+                    <input type="hidden" name="email" value="<%= contact.email %>">
+                    <button type="submit" style="background: none;border: none;"><i
+                            class='fa fa-reply fa-2x'></i></button>
+                </form>
+            </td> -->
+            <td>
+                <form method="POST" action="/deleteContact">
+                    <input type="hidden" name="id" value="<%= contact._id %>">
+                    <button type="submit" style="background: none;border: none;"><i
+                            class='fa fa-remove fa-2x'></i></button>
+                </form>
+            </td>
+        </tr>
+        <% messageCount ++ %>
+        <% }) %>
+
+    </tbody>
+</table>

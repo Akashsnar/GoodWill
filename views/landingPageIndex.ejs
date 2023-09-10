@@ -1,0 +1,68 @@
+<%-include("header")%>
+<%-include("nav")%>
+
+<div id="carouselExampleCaptions" class="carousel slide carousel-fade mainLandingCarousel"
+    data-mdb-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    
+
+
+    <div class="carousel-inner mainLandingCarousel-inner" style="margin-top: 5rem;">
+        <div class="carousel-item active mainLandingCarousel-item">
+            <center><img src="https://images.unsplash.com/photo-1518398046578-8cca57782e17?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80&h=1000" style="height: 40rem; width: 90rem; opacity: 0.9;" class="mainCarouselImg" alt="" />
+            <!-- <div style="position: absolute; top: 10rem; z-index: 2;">
+                <h1 style="color: rgb(255, 255, 255); font-weight: 700; font-size: 4rem;">Creating Hope, Changing Lives</h1>
+                <span style="color: rgb(178, 71, 71); font-weight: 700; font-size: 3rem;"> Our Commitment to </span>
+                <span style="color: rgb(236, 202, 13); font-size: 3rem; font-weight: 800; ">   Humanity</apan>
+            </div> -->
+            </center>
+        </div>
+        <div class="carousel-item  mainLandingCarousel-item">
+            <center><img src="https://images.unsplash.com/photo-1611223235982-891064f27716?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80&h=1000" style="height: 40rem; width: 90rem;" alt="" class="mainCarouselImg"">
+            </center>
+        </div>
+        <div class="carousel-item  mainLandingCarousel-item">
+            <center><img class="mainCarouselImg" src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80&h=1000" style="height: 40rem; width: 90rem;" alt=""></center>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions"
+        data-mdb-slide="prev">
+        <span class="carousel-control-prev-icon bg-blue" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions"
+        data-mdb-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<script src="js/script.js"></script>
+
+<script>
+    var scrollBefore = 642.1818237304688;
+    document.addEventListener('scroll',function(e){
+        const scrolled = window.scrollY;
+        
+    if(scrollBefore > scrolled){
+      document.getElementById("Navbar").style.backgroundColor="rgba(255, 255, 255, 0.45)";
+       
+    }
+    if(scrollBefore <= scrolled){     
+      document.getElementById("Navbar").style.backgroundColor="white";
+    }
+})
+</script>
+
+<%-include("AboutUs2")%>
+<%-include("page0")%>
+<%-include("landingPageBody")%>
+<%- include ("nonProfit") %>
+<%- include ("individual") %>
+<%- include("footer") %>

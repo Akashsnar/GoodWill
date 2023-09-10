@@ -1,0 +1,98 @@
+<%-include("header")%>
+  <%-include("nav")%>
+
+    <section class="contact_us" style="padding-top: 12%;">
+      <div class="container" id="logincontainer">
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <div class="contact_inner">
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="contact_form_inner">
+                    <h3 style="text-align: center;padding-top: 5vh;">Join us in building better world</h3>
+                    <div class="contact_field">
+                      <p>Join the community of changemakers and make a difference today!</p>
+
+                      <form id="registerForm" action="/log" method="post">
+                        <p class="errorMessage"></p>
+                        <div class="field" style="display: flex; padding-bottom: 2%;">
+                          <label for="role"><i class="fa fa-user" aria-hidden="true"></i><span
+                              style="margin-left: 5px; margin-right: 5px;"> Choose your role: </span></label>
+
+                          <select id="role" class="custom-select" name="role">
+                            <option value="User">User</option>
+                            <option value="NGOs">NGOs</option>
+                            <option value="Admin">Admin</option>
+                          </select>
+                        </div>
+                        <div class="field" style="display: flex;">
+                          <!-- <form id="registerForm" action="/log" method="post"> -->
+                          <div class="fa fa-user icon" style="padding-top: 13px;"> </div>&nbsp;
+                          <input type="text" name="logUsername" required placeholder="Username"
+                            class="form-control form-group" />
+                        </div>
+                        <div class="field space" style="display: flex;">
+                          <div class="fa fa-lock" style="padding-top: 13px; padding-left: 3px;"></div>&nbsp;&nbsp;
+                          <input type="password" name="logPassword" class="pass-key form-control form-group" required
+                            placeholder="Password" style="padding-left: 3px;" />
+                          <div class="show" style="padding-top: 10px;">SHOW</div>
+                        </div>
+                        <div class="pass">
+                          <a href="/forgetpassword"><br>Forgot Password</a>
+                        </div>
+
+                        <br />
+                        <button type="submit" value="Login" class="contact_form_submit">Login</button>
+
+                      </form><a href="/register">Need an account? Register here.</a>
+
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="right_conatct_social_icon d-flex align-items-end">
+                    <div class="socil_item_inner d-flex">
+                      <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                      <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      const pass_field = document.querySelector(".pass-key");
+      const showBtn = document.querySelector(".show");
+      showBtn.addEventListener("click", function () {
+        if (pass_field.type === "password") {
+          pass_field.type = "text";
+          showBtn.textContent = "HIDE";
+          showBtn.style.color = "#3498db";
+        } else {
+          pass_field.type = "password";
+          showBtn.textContent = "SHOW";
+          showBtn.style.color = "#222";
+        }
+      });
+    </script>
+
+    <%-include("footer")%>
+
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+      </div>
+      <!-- </body>
+</html> -->

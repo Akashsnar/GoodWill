@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Homepage</title>
+</head>
+<body>
+    <%- include('./partials/nav') %> 
+     
+    <div class="container mt-3">
+        <form action="/blog/<% if (editing) { %>edit-blog<% } else { %><% } %>" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="coverImage" class="form-label">Cover Image</label>
+                <input 
+                    type="file"
+                    class="form-control"
+                    id="coverImage"
+                    name="coverImage"
+                    aria-describedby="coverImage"  
+                    />
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    aria-describedby="title"
+                    value="<% if(editing) {%><%=blog.title%> <% } %>"   
+                    />
+            </div>
+            <div class="mb-3">
+                <label for="body">Body</label>
+                <textarea name="body" class="form-control" id="body"  rows="15" cols="50"><% if(editing) {%><%=blog.body%> <% } %></textarea>
+            </div>
+            <input type="hidden" name="blogId" value="<% if(editing){%><%=blog._id%><%}%>">
+            <div class="mb-3">
+                <% if (editing) {%>
+                <button for="btn btn-primary" type="submit">Update</button>
+                <%} else {%>
+                <button for="btn btn-primary" type="submit">Submit</button>
+                <% } %>
+            </div>
+        </form>
+    </div>
+    <%- include('./partials/script') %>
+</body>
+</html>

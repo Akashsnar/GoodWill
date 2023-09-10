@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Homepage</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class="container mt-3">
+        <div class="row row-cols-3">
+            <% blogs.forEach(blog => { %>
+            <div class="col">
+                <div class="card col" style="width: 18rem;">
+                <img src="<%= blog.coverImageURL %>" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title"><%= blog.title %></h5>
+                    <% if (editing) {%>
+                    <div style="display: flex; justify-content: space-between;">
+                    <a href="/blog/edit-blog/<%= blog._id %>" class="btn btn-primary">Edit</a>         
+                    <form action="/blog/delete" method="post">
+                        <input type="hidden" name="blogId" value="<%=blog._id %>">
+                        <button class="btn btn-primary">Delete</button>
+                        <!-- <a href="/blog/delete/<%= blog._id %>" class="btn btn-primary">Delete</a> -->
+                    </form>
+                </div><%} else {%>
+                    <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                    <% }%>
+                </div>
+              </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <%- include('./partials/script') %>
+</body>
+</html>     

@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="css/aboutStyle.css">
+<div class="mainBlock bigContainer">
+    <div class="mainBlock Container">
+        <img class="mainImg"
+            src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9uYXRpb258ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            alt="">
+        <div class="mainText aboveText">
+            <p class="aboutText headingText">
+                Our Mission
+            </p>
+            <p class="aboutText subHeadingText">
+                Our mission at GoodWill is to make it easy for individuals and companies to support trustworthy NGOs and
+                create positive change in the world.
+            </p>
+            <p class="aboutText description">
+                We are dedicated to connecting donors with NGOs that are making a meaningful impact in their communities
+                and providing a secure and transparent platform for donations. Our goal is to empower individuals to
+                make a difference and help create a better world for all.
+            </p>
+            <center><br><br><br>
+                <a href="/register" class="explore"  style="text-decoration: none;">Get Started</a></center>
+            <center>
+        </div>
+    </div>
+    <div class="mainBlock Container bottomContainer">
+        <img class="mainImg"
+            src="https://images.unsplash.com/flagged/photo-1574097656146-0b43b7660cb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fHBvb3IlMjBjaGlsZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+            alt="">
+        <div class="mainText bottomText">
+            <p class="aboutText headingText">
+               Our Vision
+            </p>
+            <p class="aboutText subHeadingText" id="subHeadingText">
+                
+            </p>
+            <p class="aboutText description">
+                We aim to inspire individuals and companies to make a positive impact on the world and create a culture
+                of giving. We envision a future where everyone has the opportunity to support causes they care about and
+                help make the world a better place.
+            </p>
+            <center><br><br><br>
+                <a href="/ngos" class="explore" style="text-decoration: none;">Check Some NGOs</a></center>
+            <center>
+        </div>
+    </div>
+</div>
+
+<script>
+    var punctSlowDownArr = ["!", ".", "?"];
+    var newLine = "<br>";
+
+    function automaticTyping(text) {
+        var index = 0;
+        var el = document.getElementById("subHeadingText");
+        typing();
+        function typing() {
+            if (index > text.length - 1)
+                return;
+            var char = text.charAt(index);
+            if (char == "<" && text.substring(index, index + 4) == newLine) {
+                el.innerHTML += newLine;
+                index += 4;
+                setTimeout(typing, Math.floor((Math.random() * 300) + 200));
+            }
+            else {
+                el.innerHTML += char;
+                if (punctSlowDownArr.indexOf(char) > -1)
+                    setTimeout(typing, Math.floor((Math.random() * 250) + 150));
+                else
+                    setTimeout(typing, Math.floor((Math.random() * 70) + 30));
+                index++;
+            }
+        }
+    }
+
+    automaticTyping("Our vision at GoodWill is to become the leading online platform for donating to NGOs across the globe.");   
+</script>

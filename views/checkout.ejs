@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NGO DONATION</title>
+    <link rel="stylesheet" href="css/paymentStyle.css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <section>
+      <div class="product">
+        <img src="https://cdn-icons-png.flaticon.com/512/2871/2871678.png" alt="The cover of NGO" />
+        <div class="description">
+          <h3>NGO DONATION</h3>
+          <!-- <h5>20.00</h5> -->
+        </div>
+      </div>
+      <form action="/create-checkout-session" method="POST">
+        <button type="submit" id="checkout-button">Checkout</button>
+      </form>
+    </section>
+  </body>
+</html>
+
+<!-- http://localhost:4242/checkout.html -->

@@ -1,0 +1,146 @@
+<%-include("header")%>
+  <%-include("nav")%>
+
+
+    <section class="contact_us" style="padding-top: 12%;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <div class="contact_inner">
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="contact_form_inner">
+                    <h3 style="text-align: center;padding-top: 5vh;">Join us in building better world</h3>
+                    <div class="contact_field">
+                      <h3>Sign Up</h3>
+                      <p>Join the community of changemakers and make a difference today!</p>
+
+                      <form id="registerForm" method="post" enctype="multipart/form-data">
+                        <p class="errorMessage"></p>
+                        <div class="field" style="display: flex; padding-bottom: 2%;">
+                          <label for="role"><i class="fa fa-user" aria-hidden="true"></i><span style="margin-left: 5px; margin-right: 5px;"> Choose your role: </span></label>
+
+                          <select id="role" class="custom-select" name="role" onchange="myroleFunction(event)">
+                            <option value="User">User</option>
+                            <option value="NGOs" onclick="ngostarted()">NGOs</option>
+                          </select>
+                            </div>
+                        <div class="field" style="display: flex;">
+                          <div class="fa fa-user" style="padding-top: 13px;"> </div>&nbsp;
+                          <input type="text" name="username" placeholder="username" id="uname" class="form-control form-group"
+                            required>
+                        </div>
+                        <div class="field" style="display: flex;">
+                          <div class="fa fa-envelope icon" style="padding-top: 13px;"> </div>&nbsp;
+                          <input type="email" name="email" placeholder="email" class="form-control form-group" required>
+                        </div>
+                        <div class="field space" style="display: flex;">
+                          <div class="fa fa-lock" style="padding-top: 13px;"></div>&nbsp;&nbsp;
+                          <input id="password" type="password" name="password" class="pass-key form-control form-group"
+                            placeholder="password" required>
+                          <div class="show" style="padding-top: 10px;">SHOW</div>
+                        </div>
+                        <div class="field space" style="display: flex;">
+                          <div class="fa fa-lock" style="padding-top: 13px;"></div>&nbsp;&nbsp;
+                          <input id="confirmpassword" type="password" name="confirmpassword"
+                            class="form-control form-group" placeholder="confirmpassword" required="">
+                        </div>
+                     <div id="extra">
+
+                     </div>
+
+                        <button type="submit" id="submitbtn" value="submit" class="contact_form_submit">Sign Up</button>
+                      </form><a href="/log">Already have an account? Login here.</a>
+
+
+                      <!--  -->
+
+<script>
+  function myroleFunction(event){
+
+    if(event.target.value=="NGOs"){
+    document.getElementById("extra").innerHTML=  "<label for='file-ip-1'>Upload Image</label> <input type='file' id='file-ip-1' accept='image/*' name='registrationproof' class='image-upload' onchange='showPreview(event);'>"
+}
+else{
+  document.getElementById("extra").innerHTML="";
+}
+
+  }
+
+</script>
+
+
+                      <script>
+                        const pass_field = document.querySelector(".pass-key");
+                        const showBtn = document.querySelector(".show");
+                        showBtn.addEventListener("click", function () {
+                          if (pass_field.type === "password") {
+                            pass_field.type = "text";
+                            showBtn.textContent = "HIDE";
+                            showBtn.style.color = "#3498db";
+                          } else {
+                            pass_field.type = "password";
+                            showBtn.textContent = "SHOW";
+                            showBtn.style.color = "#222";
+                          }
+                        });
+                      </script>
+
+
+
+
+                      <script>
+                        var passfield = document.getElementById("password")
+                        var confirmpasswordfield = document.getElementById("confirmpassword");
+                        var form = document.getElementById("registerForm")
+                        var special= `/^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/`;
+                        var submit = document.getElementById("registerForm").addEventListener("submit", function (e) {
+                          e.preventDefault();
+                          var str=passfield.value;
+                         
+                          if (passfield.value != confirmpasswordfield.value) {
+                           return alert("Passwords don't match");
+                          }
+                          if(passfield.value.length<8){
+                            return alert("Passwords too small");
+                        }
+                 
+                            if(!(/^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(str)))
+                            {
+                              alert("submitting the form");
+                             return  form.submit();
+                            }
+                           
+                         
+                          alert("add some special characters");
+
+                        })
+                      </script>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="right_conatct_social_icon d-flex align-items-end">
+                    <div class="socil_item_inner d-flex">
+                      <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                      <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function ngostarted() {
+        console.log("ngo started");
+        document.getElementById("uname").innerHTML="Ngo name";
+      }
+    </script>
+
+    <%-include("footer")%>

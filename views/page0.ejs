@@ -1,0 +1,129 @@
+<!---From here carousel-->
+<link rel="stylesheet" href="css/page0.css">
+<%- include("header") %>
+
+
+
+    <div class="page0" style="margin-top: 2rem;">
+        <div id="container">
+            <h1  class="servicesHeading" id="automatic-typing"></h1>
+          </div>
+
+
+
+
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+
+
+                <% for (let i=0; i < ngos.length; i+=3) { %>
+                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                        <div class="mycontainer conatiner">
+                            <div class="d-lg-flex d-lg-flex-wrap">
+                                <% for (let j=i; j < i + 3 && j < ngos.length; j++) { %>
+                                    <div class="card border-0 me-lg-4 mb-lg-0 mb-4 card_page0">
+                                        <div class="backgroundEffect"></div>
+                                        <div class="pic"> <img class="" src="<%= ngos[j].doc.image %>" alt="">
+
+                                        </div>
+                                        <div class="content">
+                                            <p class="h-1 mt-4">
+                                                <%= ngos[j].doc.username %>
+                                            </p>
+                                            <p class="text-muted mt-3">
+                                                <%= ngos[j].doc.desc %>
+                                            </p>
+                                            <div
+                                                class="d-flex align-items-center justify-content-between mt-3 pb-3 mybuttons">
+                                                <a href="https://shuddhi.org/" class="readmore">
+                                                    <div class="button">Read More <span
+                                                            class="fas fa-arrow-right"></span>
+                                                    </div>
+                                                </a>
+                                                <div class="d-flex align-items-center justify-content-center mt-3 pb-3">
+                                                    <div class="button" onclick="window.location.href = '/checkout'">
+                                                        Donate</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+
+
+
+
+
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+            </script>
+
+
+        <script>
+            var text = "Our Trending Social campaigns";
+            var punctSlowDownArr = ["!", ".", "?"];
+            var newLine = "<br>";
+
+            function automaticTyping() {
+                var index = 0;
+                var el = document.getElementById("automatic-typing");
+                typing();
+                function typing() {
+                    if (index > text.length - 1)
+                        return;
+                    var char = text.charAt(index);
+                    if (char == "<" && text.substring(index, index + 4) == newLine) {
+                        el.innerHTML += newLine;
+                        index += 4;
+                        setTimeout(typing, Math.floor((Math.random() * 300) + 200));
+                    }
+                    else {
+                        el.innerHTML += char;
+                        if (punctSlowDownArr.indexOf(char) > -1)
+                            setTimeout(typing, Math.floor((Math.random() * 250) + 150));
+                        else
+                            setTimeout(typing, Math.floor((Math.random() * 70) + 30));
+                        index++;
+                    }
+                }
+            }
+
+            automaticTyping();   
+        </script>

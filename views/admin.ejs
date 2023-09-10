@@ -1,0 +1,211 @@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<style>
+  :root {
+    font-size: 1em;
+  }
+
+  #mainContainerDashBoard h1 {
+    margin-right: 6rem;
+    margin-left: 6rem;
+    font-size: 4rem;
+  }
+
+
+  .mainDash {
+    padding: 1rem;
+  }
+
+  @media (min-width: 48rem) {
+
+    .mainDash {
+      padding-right: 3rem;
+      padding-left: 3rem;
+    }
+  }
+
+  .isPlaceholders {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .isPlaceholders h4 {
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+
+  .isPlaceholder {
+    margin-bottom: 3rem;
+  }
+
+  .isPlaceholder img {
+    display: inline-block;
+    border-radius: 50%;
+  }
+
+  .dashboard-item {
+    display: inline-block;
+    width: 12.5rem;
+    height: 12.5rem;
+    border: 0.563rem double #EFF;
+    border-radius: 50%;
+    vertical-align: middle;
+    font-size: 4.063rem;
+    color: #FFF;
+    box-shadow: 0px 0px 1rem #999;
+  }
+
+  .dashboard-item:hover {
+    box-shadow: 0px 0px 1.563rem #888;
+  }
+
+  .menuCircle {
+    width: 15rem;
+    height: 15rem;
+    margin: 0 auto;
+  }
+
+   .circle {
+    width: 15rem;
+    height: 15rem;
+    opacity: 0;
+  }
+
+ .menu-button {
+    position: relative;
+    top: -14.063rem;
+  }
+
+  .axy {
+    color: #000000;
+    text-decoration: none;
+  }
+  .countdata{
+    font-size: 2rem;
+  }
+</style>
+
+
+<%-include("navAdmin")%>
+<br><br><br>
+<br><br><br>
+
+
+    <!-- start -->
+
+    <div id="mainContainerDashBoard" >
+
+      <script>
+        function callme(org, divblock) {
+          var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById(divblock).innerHTML =
+        this.responseText;
+      }
+    };
+    xhttp.open("GET", `http://localhost:3000/sitedata/${org}`, true);
+    xhttp.send();
+        }
+      </script>
+      <script>
+        callme('ngolength', 'ngono');
+        callme('userlength', 'userno');
+        
+        callme('reviewlength', 'reviewno');
+     
+     </script>
+
+
+
+      <br />
+      <hr>
+      <center>
+        <h1>Admin DashBoard</h1>
+      
+      <hr>
+
+      <div class="boxDash">
+        <div class="mainDash">
+          <div class=" isPlaceholders" style="display: flex; flex-wrap: wrap; align-content: center; justify-content: center;">
+          <div class="isPlaceholder">
+            <div class="menuCircle">
+              <a href="/ngodetails" class="axy">
+                <div class="circle">
+                </div>
+                <button class="dashboard-item menu-button" style="background-color:#8561C8;">
+                  <span class="fa fa-users"></span>
+                  <span id="ngono" class="countdata"></span>
+                </button>
+            </div>
+            <h4>NGOs</h4>
+            </a>
+          </div>
+          <div class="isPlaceholder">
+            <div class="menuCircle">
+              <a href="/userdetails" class="axy">
+                <div class="circle">
+                </div>
+                <button class="dashboard-item menu-button" style="background-color:#00B8ED;">
+                  <span class="fa fa-user"></span>
+                  <span id="userno" class="countdata"></span>
+                </button>
+            </div>
+            <h4>Users</h4>
+            </a>
+          </div>
+          <div class="isPlaceholder">
+            <div class="menuCircle">
+              <a href="/reviewdetails" class="axy">
+                <div class="circle">
+                </div>
+                <button class="dashboard-item menu-button" style="background-color:#68C182;">
+                  <span class="fa fa-comment"></span>
+                  <span id="reviewno" class="countdata"></span>
+
+                </button>
+            </div>
+            <h4>Reviews</h4>
+            </a>
+          </div>
+          <div class="isPlaceholder">
+            <div class="menuCircle">
+              <a href="/contactsDetails" class="axy">
+                <div class="circle">
+                </div>
+                <button class="dashboard-item menu-button" style="background-color:#267DB3;">
+                  <span class="fa fa-message"></span>
+                </button>
+            </div>
+            <h4>Message</h4></a>
+          </div>
+          <div class="isPlaceholder">
+            <div class="menuCircle">
+              <a href="#" class="axy">
+                <div class="circle">
+                </div>
+                <button class="dashboard-item menu-button" style="background-color:#FFB54D;">
+                  <span class="fa fa-blog"></span>
+                </button>
+            </div>
+            <h4>Blog</h4></a>
+          </div>
+          <div class="isPlaceholder">
+            <div class="menuCircle">
+              <a href="/reportdetails" class="axy">
+                <div class="circle">
+                </div>
+                <button class="dashboard-item menu-button" style="background-color:#989fa8;">
+                  <span class="fa fa-info-circle"></span>
+                </button>
+            </div>
+            <h4>Report</h4></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    </center>
