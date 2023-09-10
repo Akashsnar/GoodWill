@@ -14,7 +14,7 @@ app.set("views", "./views");
 app.use(bodyparser, urlencoded({ extended: false }));
 router.get("/", (req, res, next) => {
 
-    return res.status(200).render("log");
+    return res.status(200).render("log", {success: false});
 })
 
 router.post("/", async (req, res, next) => {
@@ -43,10 +43,15 @@ router.post("/", async (req, res, next) => {
                 return res.redirect('/user');
 
             }
-            return res.status(400).send('incorrect password in user part');
+            return  res.render('log', {
+                success: true
+            });
         }
         else {
-            res.status(400).send('invalid username in user part');
+            // res.status(400).send('invalid username in user part');
+            res.render('log', {
+                success: true
+            });
         }
     }
 
@@ -73,10 +78,14 @@ router.post("/", async (req, res, next) => {
                     return res.redirect('/ngo');
     
                 }
-                return res.status(400).send('incorrect password in ngo part');
+                return  res.render('log', {
+                    success: true
+                });
             }
             else {
-                res.status(400).send('invalid username in ngo part');
+                res.render('log', {
+                    success: true
+                });
             }
 
         }
@@ -86,8 +95,10 @@ router.post("/", async (req, res, next) => {
               return res.redirect('/admin');
     }   
     else{
-        let name=req.body;
-        res.status(400).send('invalid adminname in admin part part'+name);
+        let name=req.body.formname;
+        res.render('log', {
+            success: true
+        });
     }
    }
 
@@ -100,36 +111,3 @@ router.post("/", async (req, res, next) => {
 
 module.exports = router;
 
-
-
-
-/*
-router.post("/",async(req,res,next)=>{
-console.log(req.body);
-    var payload = req.body;
-    var flag1 =0,flag2=0;
-    if(req.body.logUsername && req.body.logPassword && req.body.role==='User')
-    {
-        let q = `select * from web_check where username = $username and password = $password`;
-
-         db.get(q,{$username: payload.logUsername, $password: payload.logPassword},async(err,row)=>
-        {
-            if(err || !row){
-                // alert("Incorrect username or password");
-                return res.status(400).send({
-                    message: 'This is an error!'
-                 });
-            }
-
-           else 
-           {
-            req.session.username=row.username;
-            req.session.email=row.email;
-            return res.redirect("user");
-           }
-        })
-    }
-     
-})
-
-*/

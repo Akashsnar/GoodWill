@@ -195,9 +195,7 @@ res.render("about_us");
 app.get("/services", (req, res)=>{
     res.render("services");
 })
-app.get("/contact", (req, res)=>{
-  res.render("contact");
-})
+
 app.get('/contactsDetails', async (req, res) => {
 const contacts = await Contact.find();
 res.render('contactsDetails', {
@@ -316,7 +314,6 @@ app.post('/user',async(req,res)=>{
   console.log("/user running");
   
   try{
-  
     let sear = req.body.payload;
     const rating =req.body.payloadr;
     console.log(rating);
@@ -329,15 +326,6 @@ app.post('/user',async(req,res)=>{
       { $match : {username:new RegExp(`^${sear}`,"i")} },
       {$group:{_id: '$username',doc:{$first: '$$ROOT'} }}];
     let  obj =  await ngoschema.aggregate(pipeline);
-    
-    
-    // obj.forEach(Element=>{
-    //   console.log(Element.doc.username);
-    // });
-       
-    // if(arrofngo.length>0)
-    // {
-    // res.status(200).render('User',{name:req.session.user.username, email: req.session.user.email,item:obj,length:obj.length,useritem:userobj, reviews: reviewschema,arrofngo:reportschemaobj.ngoname});
     if(rating==undefined)
     {
       console.log(obj);
@@ -523,6 +511,7 @@ app.post('/create-checkout-session', async (req, res) => {
   const AdminRoute=require("./routes/adminRoutes");
 const { map } = require("jquery");
 app.use("/admin", AdminRoute);
+
 
 
 

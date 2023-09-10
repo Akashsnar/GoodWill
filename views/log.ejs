@@ -2,7 +2,7 @@
   <%-include("nav")%>
 
     <section class="contact_us" style="padding-top: 12%;">
-      <div class="container" id="logincontainer">
+      <div class="container" id="logincontainer" onclick="formcolor()">
         <div class="row">
           <div class="col-md-10 offset-md-1">
             <div class="contact_inner">
@@ -13,7 +13,7 @@
                     <div class="contact_field">
                       <p>Join the community of changemakers and make a difference today!</p>
 
-                      <form id="registerForm" action="/log" method="post">
+                      <form id="registerForm" action="/log" method="post" name="formname">
                         <p class="errorMessage"></p>
                         <div class="field" style="display: flex; padding-bottom: 2%;">
                           <label for="role"><i class="fa fa-user" aria-hidden="true"></i><span
@@ -65,6 +65,46 @@
           </div>
         </div>
       </div>
+      <% if (success) { %>
+        <div class="alert alert-danger" role="alert" id="error_message" style="position: absolute; top: 5rem; left: 35rem;"> Incorrect username or password</div>
+        <script>
+          let formval= document.getElementById("logincontainer");
+          formval.style.color="red";
+
+          let id = null;
+  let pos = 100;
+  let kos=150;
+  clearInterval(id);
+  id = setInterval(frame, 0.1);
+
+  function frame() {
+      if (pos <= 150 && pos>=100) {
+      pos++; 
+      formval.style.marginLeft = pos + "px"; 
+
+    }
+    else if(kos>95){ 
+      kos--;
+      formval.style.marginLeft = kos + "px"; 
+    }
+    else{
+      clearInterval(id);
+    }
+  }
+
+        </script>
+    <% } %>
+
+<script>
+  function formcolor(){
+    let formval= document.getElementById("logincontainer");
+          formval.style.color="black";
+          const element = document.getElementById("error_message");
+element.remove();
+  }
+</script>
+
+
     </section>
     <script>
       const pass_field = document.querySelector(".pass-key");
