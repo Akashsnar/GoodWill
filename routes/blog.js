@@ -135,15 +135,5 @@ router.post("/", upload.single("coverImage"), async (req, res) => {
     return res.redirect(`/blog/${blog._id}`);
 });
 
-// router.post("/", async (req, res) => {
-//     const { title, body } = req.body
-//     const blog = await Blog.updateMany({
-//         body,
-//         title,
-//         createdBy: req.user._id,
-//         coverImageURL: `uploads/${req.file.filename}`,
-//     });
-//     return res.redirect(`/blog/${blog._id}`);
-// })
 
 module.exports = router;

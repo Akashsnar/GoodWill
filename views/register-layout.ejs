@@ -2,8 +2,8 @@
   <%-include("nav")%>
 
 
-    <section class="contact_us" style="padding-top: 12%;">
-      <div class="container">
+    <section  style="padding-top: 12%;">
+      <div class="container" id="register" onclick="formrestore()">
         <div class="row">
           <div class="col-md-10 offset-md-1">
             <div class="contact_inner">
@@ -99,13 +99,16 @@ else{
                           var str=passfield.value;
                          
                           if (passfield.value != confirmpasswordfield.value) {
-                           return alert("Passwords don't match");
+                            wrongvalues();
+                            return alert("Passwords don't match");
+
                           }
                           if(passfield.value.length<8){
+                            wrongvalues();
                             return alert("Passwords too small");
                         }
                  
-                            if(!(/^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(str)))
+                            if((/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(str)))
                             {
                               alert("submitting the form");
                              return  form.submit();
@@ -113,6 +116,7 @@ else{
                            
                          
                           alert("add some special characters");
+                          wrongvalues();
 
                         })
                       </script>
@@ -142,5 +146,63 @@ else{
         document.getElementById("uname").innerHTML="Ngo name";
       }
     </script>
+
+
+
+
+
+
+
+<div class="alert alert-danger" role="alert" id="error_message" style="position: absolute; top: 18rem; left: 35rem; display: none;">Incorrect credentials</div>
+     
+
+<script>
+ function wrongvalues(){
+console.log("callme");
+let x=document.getElementById("error_message");
+if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+    let formval= document.getElementById("register");
+  formval.style.color="red";
+
+let id = null;
+let pos = 100;
+let kos=150;
+clearInterval(id);
+id = setInterval(frame, 0.01);
+
+function frame() {
+if (pos <= 150 && pos>=100) {
+pos++; 
+formval.style.marginLeft = pos + "px"; 
+
+}
+else if(kos>95){ 
+kos--;
+formval.style.marginLeft = kos + "px"; 
+}
+else{
+clearInterval(id);
+}
+}
+
+ }
+</script>
+
+<script>
+    function formrestore(){
+      let x=document.getElementById("error_message");
+      x.style.display = "none";
+      let formval= document.getElementById("register");
+  formval.style.color="";
+    }
+  </script>
+
+
+
 
     <%-include("footer")%>

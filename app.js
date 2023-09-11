@@ -160,35 +160,16 @@ app.get("/", async function (req, res) {
 
 const Contact = require('./mongoSchema/contactSchema.js');
 
-app.post('/contact', (req, res) => {
-  const {
-    name,
-    email,
-    message
-  } = req.body;
+app.post('/contact', async (req, res) => {
 
-  const contact = new Contact({
-    name,
-    email,
-    message
-  });
-
-  contact.save()
-    .then(() => {
-      res.redirect('/');
-    })
-    .catch((err) => {
-      console.error(err);
-      res.send('error');
-    });
+  const contactobj = new Contact();
+  contactobj.name=req.body.username;
+  contactobj.email=req.body.email;
+  contactobj.message=req.body.message;
+await  contactobj.save();
+res.redirect("/contact");
 });
 
-// app.get("/", function (req, res) {
-//     res.render("AboutUs2")
-// });
-// app.get("/", function (req, res) {
-//     res.render("nonProfit")
-// });
 app.get("/about_us", (req, res)=>{
 res.render("about_us");
 })
@@ -233,12 +214,7 @@ else{
 app.get("/contact", (req, res)=>{
     res.render("contact");
 })
-// app.get("/log", (req, res)=>{
-//     res.render("log");
-// })
-// app.get("/register", (req, res)=>{
-//     res.render("register-layout");
-// })
+
 app.get("/Faq", (req, res)=>{
     res.render("faq");
 })
@@ -521,8 +497,13 @@ app.get("/ngodetails", async(req, res)=>{
   const ngod= await ngoschemaregist.find();
   res.render("ngodetails", {ngod:ngod});
 })
-app.post("/ngodetails", (req, res)=>{
-  console.log("post ho taha hai");
+
+app.post("/ngodetails", async(req, res)=>{
+
+  const id = (req.body.checkbox);
+// const result =  await deleteOne({_id:new mongodb.ObjectId(id)});
+
+  console.log("post ho taha hai"+req.body.checkbox);
   const it=req.body.checkbox;
   ngoschemaregist.findByIdAndDelete(it)
   .then(function (it) {
@@ -645,7 +626,6 @@ app.post("/reportdetails", async(req, res)=>{
 
 
 app.post("/reportdata", async(req, res)=>{
-  console.log("me chala");
   const username = req.session.user.username;
   console.log(username);
   const ngoname = req.body.htmlcontent;
@@ -702,6 +682,13 @@ app.get("/bloghome", async (req, res) => {
       blogs: allBlogs,
       editing: false
   });  
+});
+
+app.get("/feedback", async (req, res) => {                                    
+  res.render("feedbackForm");  
+});
+app.post("/feedback", async (req, res) => {                                    
+  res.redirect("feedback");  
 });
 
 app.use('/bloguser', userRoute);

@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../mongoSchema/user')
+const User = require('../mongoSchema/mongoschema')
 const Ngos = require('../mongoSchema/ngoschema')
 const Review= require("../mongoSchema/reviewschema");
-
+const Contact= require("../mongoSchema/contactSchema");
 
 // Getting all
 router.get('/', async (req, res) => {
@@ -42,7 +42,24 @@ router.get('/ngolength', async (req, res) => {
       res.status(500).json({ message: err.message })
     }
   })
-  
+  router.get('/messageslength', async (req, res) => {
+    try {
+      const contact = await Contact.find()
+      res.json(contact.length)
+    } catch (err) {
+      res.status(500).json({ message: err.message })
+    }
+  })
+
+  router.get('/ngodetail', async (req, res) => {
+    try {
+      const ngo = await Ngos.find()
+      res.json(ngo)
+    } catch (err) {
+      res.status(500).json({ message: err.message })
+    }
+  })
+
 
 // Getting One
 router.get('/:id', getUser, (req, res) => {

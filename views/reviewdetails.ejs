@@ -12,29 +12,44 @@
 
 </head>
 
-<body>
+<body style="background: linear-gradient(90deg, rgb(5, 252, 174) 21%, rgb(231, 253, 29) 80%);">
+    <h1 style="margin: auto; margin-top: 2.5rem; text-align: center;">Ngos Review</h1>
+
     <div class="card-group sibling-fade">
         <% reviewd.forEach(function(reviewd) { %>
-
-            <div class="col-lg-4 col-md-4">
+            <div class="col-lg-4 col-md-4" style="margin-top: 2.5rem; width: 25rem;">
                 <div class="card mx-3 my-2">
-                    <div class="card-body">
-
-                        <li>Ngo name: <%= reviewd.ngoname %>
-                        </li>
-                        <li> Comment by: <%= reviewd.username %>
-                        </li>
-                        <li>Rating: <%= reviewd.rating %>
-                        </li>
-                        <li>Comment: <%= reviewd.comment %>
-                        </li>
+                    <div class="card-body" >
+                        <ul style="list-style-type:none;">
+                            <li>Ngo name: <%= reviewd.ngoname %>
+                            </li>
+                            <li> Comment by: <%= reviewd.username %>
+                            </li>
+                            <li>Rating: <%= reviewd.rating %>
+                            </li>
+                            <li>Comment: <%= reviewd.comment %>
+                            </li>
+                        </ul>
                     </div>
-
+ <div class="emojirating" style="position: absolute; left: 15rem; top: 1.5rem">
+    <% if (reviewd.rating == 1) { %>
+        <img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEwL3JtNTg2LWZyb3duaW5nZmFjZS0wMV8xLWw5ZDNjMXYwLnBuZw.png"  style="width: 6rem;"  alt="">
+          <%} else if (reviewd.rating == 2) { %>
+          <img src="https://freepngimg.com/save/36860-sad-emoji-transparent-image/480x480"  style="width: 6rem;"  alt="">
+          <%} else if (reviewd.rating == 3) { %>
+              <img src="https://emojiisland.com/cdn/shop/products/Neutral_Face_Emoji_1024x1024.png?v=1571606037"  style="width: 6rem;"  alt="">
+              <%} else if (reviewd.rating == 4) { %>
+                <img src="https://emojiisland.com/cdn/shop/products/Slightly_Smiling_Emoji_Icon_34f238ed-d557-4161-b966-779d8f37b1ac_large.png?v=1571606093"  style="width: 6rem;"  alt="">
+    <%} else {%>
+    <img src="https://cdn.pixabay.com/photo/2020/12/27/20/24/smile-5865208_1280.png"  style="width: 6rem;"  alt="">
+    <% } %>
+        
+ </div>
                     <div class="card-footer">
                         <form action="/reviewdetails" method="post" style="display: inline;">
                             <label for=""> Remove this Review</label>
                             <input type="checkbox" name="checkbox" value="<%=reviewd._id%>"
-                                style="display: inline; margin-left: 16rem;" onChange="this.form.submit()">
+                                style="display: inline; margin-left: 10rem;" onChange="this.form.submit()">
                         </form>
                     </div>
                 </div>

@@ -1,0 +1,480 @@
+<%-include("header")%>
+<%-include("nav")%>
+<script src="https://kit.fontawesome.com/201c11be2e.js" crossorigin="anonymous"></script>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    b {
+        color: #00253c;
+        /* color: #ffffff; */
+    }
+
+    body {
+        width: 100%;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .feedback-form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 1rem;
+        margin-top: 52rem;
+        border: 1px solid #00ff80;
+        background-image: linear-gradient(to bottom right, #2EAF7D, #3fd0c9);
+        border-radius: 0.5rem; 
+        box-shadow: 0px 0px 10px rgba(245, 133, 133, 0.1);
+        animation: slideInFromTop 0.5s ease-in-out;
+        transition: all 0.3s ease;
+    }
+    @keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+    .feedback-form header {
+        text-align: center;
+        margin-bottom: 1rem; 
+        color: #00253c;
+    }
+
+    .feedback-form header h2 {
+        font-size: 1.5rem; 
+        margin-bottom: 0.625rem; 
+        color: #00253c;
+    }
+
+    .feedback-form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 0.3125rem; 
+        color: #00253c;
+    }
+
+    .feedback-form input[type="text"],
+    .feedback-form input[type="text"],
+    .feedback-form textarea {
+        width: 100%;
+        padding: 1rem; 
+        margin-bottom: 1.875rem; 
+        border: 1px solid #ddd;
+        border-radius: 0.1875rem; 
+        transition: border-color 0.3s ease;
+        background: transparent;
+    }
+
+    .feedback-form input[type="text"]:focus,
+    .feedback-form input[type="text"]:focus,
+    .feedback-form textarea:focus {
+        border-color: #0bff48;
+    }
+
+    .feedback-form input[type="radio"],
+    .feedback-form input[type="checkbox"] {
+        margin-right: 0.625rem; 
+    }
+
+    .feedback-form fieldset {
+        border: 1px solid #ddd;
+        border-radius: 0.1875rem; 
+        padding: 1rem;
+        margin-bottom: 1.875rem; /
+    }
+
+    .feedback-form select {
+        width: 100%;
+        padding: 1rem; 
+        margin-top: 15rem; 
+        margin-bottom: 1.875rem; 
+        border: 1px solid #ddd;
+        border-radius: 0.1875rem; 
+        background: transparent; 
+    }
+
+    .feedback-form #submit-button {
+        font-size: 1.25rem; 
+        line-height: 1.125rem; 
+        color: #00253c;
+        background: linear-gradient(to bottom right, #2EAF7D, #3fd0c9);
+        padding: 1rem 5rem; 
+        cursor: pointer;
+        border-radius: 3rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .required {
+        color: #ff4b4b;
+        margin-left: 0.3125rem; 
+    }
+
+    @media screen and (max-width: 600px) {
+        .feedback-form {
+            padding: 0.625rem; 
+        }
+    }
+
+    .feedback-form fieldset input[type="radio"] {
+        margin-right: 0.3125rem; 
+    }
+
+    .feedback-form fieldset label {
+        display: inline-block;
+        margin-right: 0.625rem; 
+    }
+
+    .feedback-form fieldset input[type="radio"]:checked+label {
+        font-weight: bold;
+        color: #008000;
+    }
+
+    .feedback-form #submit-button:hover {
+        background-color: #008000;
+        color: #fff;
+        transform: scale(1.05);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .feedbackBox {
+        background: transparent; 
+        padding: 2rem 4rem; 
+        border-radius: 1rem; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .emoji {
+        width: 100px; 
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 0.625rem; 
+        overflow: hidden;
+    }
+
+    .emoji img {
+        width: 80px; 
+        margin: 0 0.625rem; 
+    }
+
+    #emoji {
+        display: flex;
+        align-items: center;
+        transform: translateX(-400px);
+        transition: 0.3s;
+    }
+
+    .rating .fas {
+        font-size: 2.5rem; 
+        color: #e4e4e4;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <form action="#" class="feedback-form" onsubmit="return formValidation()">
+      <header>
+        <h2>Feedback Form</h2>
+      </header>
+      <div>
+        <label for="full-name">Name <span class="required">*</span></label>
+        <div>
+          <input
+            id="full-name"
+            name="name"
+            type="text"
+            tabindex="1"
+            onblur="nameValidation()"
+            required
+          />
+        </div>
+      </div>
+      <div>
+        <label for="email">Email <span class="required">*</span></label>
+        <div>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            spellcheck="false"
+            tabindex="3"
+            onblur="emailValidation()"
+            required
+          />
+        </div>
+      </div>
+      <div>
+        <label for="message"
+          >What is the Primary reason you came to the site?
+          <span class="required">*</span></label
+        >
+        <div>
+          <textarea
+            id="message"
+            name="message"
+            spellcheck="true"
+            rows="5"
+            tabindex="4"
+          ></textarea>
+        </div>
+      </div>
+      <div>
+        <fieldset>
+          <legend><b>Did you find what you needed?</b></legend>
+          <div>
+            <input
+              id="choice-1"
+              name="choice"
+              type="radio"
+              value="First Choice"
+              tabindex="5"
+              checked="checked"
+            />
+            <label for="choice-1">Yes, all of it</label>
+          </div>
+          <div>
+            <input
+              id="choice-2"
+              name="choice"
+              type="radio"
+              value="Second Choice"
+              tabindex="6"
+            />
+            <label for="choice-2">Yes, some of it</label>
+          </div>
+          <div>
+            <input
+              id="choice-3"
+              name="choice"
+              type="radio"
+              value="Third Choice"
+              tabindex="7"
+            />
+            <label for="choice-3">No, none of it</label>
+          </div>
+        </fieldset>
+      </div>
+      <div>
+        <fieldset>
+          <legend>
+            <b>Is this the first time you have visited the website?</b>
+            <span class="required">*</span>
+          </legend>
+          <div>
+            <input
+              id="first-time-yes"
+              name="first-time"
+              type="radio"
+              value="Yes"
+              tabindex="8"
+            />
+            <label for="first-time-yes">Yes</label>
+          </div>
+          <div>
+            <input
+              id="first-time-no"
+              name="first-time"
+              type="radio"
+              value="No"
+              tabindex="9"
+            />
+            <label for="first-time-no">No</label>
+          </div>
+        </fieldset>
+      </div>
+      <div>
+        <fieldset>
+          <legend><b>Rate Our Website</b><span class="required">*</span></legend>
+          <div class="feedbackBox">
+            <div class="emoji">
+              <div id="emoji">
+                <img
+                  src="https://iili.io/J9rbT8J.png"
+                  alt="Very Bad"
+                  border="0"
+                />
+                <img src="https://iili.io/J9rbuyv.png" alt="Bad" border="0" />
+                <img src="https://iili.io/J9rbo6F.png" alt="Ok" border="0" />
+                <img src="https://iili.io/J9rbz3g.png" alt="Good" border="0" />
+                <img
+                  src="https://iili.io/J9rbIaa.png"
+                  alt="Very Good"
+                  border="0"
+                />
+              </div>
+            </div>
+            <p id="p" style="color: #034903"></p>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <center>
+        <div>
+          <input
+            id="submit-button"
+            name="submit-button"
+            type="submit"
+            value="Submit"
+            onclick="submitForm(event)"
+          />
+        </div>
+      </center>
+    </form>
+  
+    <script>
+      var stars = document.getElementsByClassName("fas");
+      var emoji = document.getElementById("emoji");
+      var x;
+      stars[0].onclick = function () {
+        stars[0].style.color = "#ffd93b";
+        stars[1].style.color = "#e4e4e4";
+        stars[2].style.color = "#e4e4e4";
+        stars[3].style.color = "#e4e4e4";
+        stars[4].style.color = "#e4e4e4";
+        emoji.style.transform = "translateX(0)";
+        document.getElementById("p").innerHTML = "Worst";
+        x = 1;
+      };
+      stars[1].onclick = function () {
+        stars[0].style.color = "#ffd93b";
+        stars[1].style.color = "#ffd93b";
+        stars[2].style.color = "#e4e4e4";
+        stars[3].style.color = "#e4e4e4";
+        stars[4].style.color = "#e4e4e4";
+        emoji.style.transform = "translateX(-100px)";
+        document.getElementById("p").innerHTML = "Bad";
+        x = 2;
+      };
+      stars[2].onclick = function () {
+        stars[0].style.color = "#ffd93b";
+        stars[1].style.color = "#ffd93b";
+        stars[2].style.color = "#ffd93b";
+        stars[3].style.color = "#e4e4e4";
+        stars[4].style.color = "#e4e4e4";
+        emoji.style.transform = "translateX(-200px)";
+        document.getElementById("p").innerHTML = "Ok";
+        x = 3;
+      };
+      stars[3].onclick = function () {
+        stars[0].style.color = "#ffd93b";
+        stars[1].style.color = "#ffd93b";
+        stars[2].style.color = "#ffd93b";
+        stars[3].style.color = "#ffd93b";
+        stars[4].style.color = "#e4e4e4";
+        emoji.style.transform = "translateX(-300px)";
+        document.getElementById("p").innerHTML = "Good";
+        x = 4;
+      };
+      stars[4].onclick = function () {
+        stars[0].style.color = "#ffd93b";
+        stars[1].style.color = "#ffd93b";
+        stars[2].style.color = "#ffd93b";
+        stars[3].style.color = "#ffd93b";
+        stars[4].style.color = "#ffd93b";
+        emoji.style.transform = "translateX(-400px)";
+        document.getElementById("p").innerHTML = "Excellent";
+        x = 5;
+      };
+  
+      function nameValidation() {
+        var nameInput = document.getElementById("full-name");
+        var name = nameInput.value;
+        var regExp = /^[a-zA-Z ]{2,30}$/;
+  
+        if (!regExp.test(name)) {
+            console.log("Not proper Name format");
+          nameInput.focus();
+          return false;
+        }
+  
+        function capitalizeWords(input) {
+          return input.replace(/(^|\s)\S/g, function (match) {
+            return match.toUpperCase();
+          });
+        }
+  
+        var capitalizedName = capitalizeWords(name);
+        nameInput.value = capitalizedName;
+        return true;
+      }
+  
+      function emailValidation() {
+        var email = document.getElementById("email").value;
+        var regExp =
+          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (!regExp.test(email)) {
+   console.log("Not proper email address format");
+          document.getElementById("email").focus();
+          return false;
+        }
+  
+        return true;
+      }
+  
+      function formValidation() {
+        if (!nameValidation()) {
+          return false;
+        }
+  
+        if (!emailValidation()) {
+          return false;
+        }
+  
+        return true;
+      }
+  
+      function submitForm(event) {
+        event.preventDefault();
+        const formData = {
+          name: document.getElementById("full-name").value,
+          email: document.getElementById("email").value,
+          message: document.getElementById("message").value,
+          choice: document.querySelector('input[name="choice"]:checked').value,
+          firstTime: document.querySelector('input[name="first-time"]:checked')
+            .value,
+          rating: x,
+        };
+  
+        const jsonData = JSON.stringify(formData);
+  
+        console.log(jsonData);
+      
+  
+      fetch("/feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: jsonData,
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log("Data sent successfully!");
+          } else {
+            console.error("Error sending data to the server.");
+          }
+        })
+        .catch((error) => {
+          console.error("Network error:", error);
+        });
+      }
+    </script>
+  </body>
+  

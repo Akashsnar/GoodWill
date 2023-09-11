@@ -10,34 +10,68 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
-<body>
-    <div class="card-group sibling-fade">
-        <% ngod.forEach(function(ngod) { %>
-            <div class="col-lg-4 col-md-4">
-                <div class="card mx-3 my-2">
-                    <img class="card-img-top" style="height: 20rem; width: 25rem;" src=<%=ngod.profilePic %>
-                    alt="Card Groups">
-                    <div class="card-body">
+<body style="background: linear-gradient(90deg, rgb(34, 33, 33) 21%, rgb(231, 253, 29) 80%);">
+    <h1 style="margin: auto; margin-top: 2.5rem; text-align: center;">Ngos</h1>
+    
+        <script>
+            var ngodata = 'f';
+            function callme(org, divblock) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                  
+                        ngodata = this.responseText;
+                        let arr;
+                        arr = JSON.parse(ngodata);
 
-                        <li> Name: <%= ngod.username %>
-                        </li>
-                      <li>
-                        <img src="<%=ngod.registrationproof %>" style="height: 5rem; width: 5rem" alt="no">
-                      </li>
+                        arr.forEach(element => {     
+                            console.log(element._id);                       
+                        document.getElementById("realdata").innerHTML += ` <div class="col-lg-4 col-md-4" style="width: 35rem; margin-left: 2.5rem; margin-top: 2.5rem;">
+                <div class="card mx-3 my-2">
+                    <img class="card-img-top" style="height: 250px; width: 270px; " src=${element.profilePic}
+                    alt="Card Groups">
+                    <div class="card-body" style="position: absolute; left: 15rem; top: 2.5rem">
+                        <ul style="list-style-type:none;">
+                            <li> Name: ${element.username }
+                            </li>
+                            <li>
+                                <img src= ${element.registrationproof} style="height: 5rem; width: 5rem" alt="no">
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="card-footer">
                         <form action="/ngodetails" method="post" style="display: inline;">
-                            <label for=""> Remove this user </label>
-                            <input type="checkbox" name="checkbox" value="<%=ngod._id%>"
-                                style="display: inline; margin-left: 16rem;" onChange="this.form.submit()">
+                            <label for=""> Remove this Ngos </label>
+                            <input type="checkbox" name="checkbox" value=" ${element._id}"
+                                style="display: inline; margin-left: 20rem;" onChange="this.form.submit()">
                         </form>
+
+
                     </div>
 
                 </div>
-            </div>
-            <% }); %>
-    </div>
+            </div>`;
+
+        });
+
+
+                    }
+                };
+                xhttp.open("GET", `http://localhost:3000/sitedata/${org}`, true);
+                xhttp.send();
+            }
+
+            callme('ngodetail', 'ngono');
+        </script>
+        <div id="ngono">
+
+        </div>
+        <div id="realdata"  class="card-group sibling-fade mydiv" style="margin-left: 3.5rem">
+
+        </div>
+
+
 </body>
 
 </html>

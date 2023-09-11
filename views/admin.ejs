@@ -93,6 +93,7 @@
     <div id="mainContainerDashBoard" >
 
       <script>
+
         function callme(org, divblock) {
           var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -106,12 +107,13 @@
         }
         
       </script>
+      
       <script>
         callme('ngolength', 'ngono');
         callme('userlength', 'userno');
-        
         callme('reviewlength', 'reviewno');
-     
+        callme('messageslength', 'contactno');
+
      </script>
 
 
@@ -134,6 +136,7 @@
                   <span id="ngono" class="countdata"></span>
                 </button>
             </div>
+
             <h4>NGOs</h4>
             </a>
           </div>
@@ -171,6 +174,7 @@
                 </div>
                 <button class="dashboard-item menu-button" style="background-color:#267DB3;">
                   <span class="fa fa-message"></span>
+                  <span id="contactno" class="countdata"></span>
                 </button>
             </div>
             <h4>Message</h4></a>
