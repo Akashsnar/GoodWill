@@ -6,7 +6,7 @@
   
   "description": "Landing Page",
   
-  "main": "welcome.js",
+  "main": "app.js",
   
   "scripts": {
   
