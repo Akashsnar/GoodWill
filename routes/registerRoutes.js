@@ -94,6 +94,7 @@ router.post("/", upload.single('registrationproof'), async (req, res, next) => {
         if (ngo == null) {
             
             const ngoobj = new Ngo();
+            ngoobj._id=Math.random();
           ngoobj.username=req.body.username;
           ngoobj.email=req.body.email;
           let pass=req.body.password;

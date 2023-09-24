@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 router.get('/userlength', async (req, res) => {
     try {
       const user = await User.find()
-      res.json(user.length)
+      res.json(user.length);
     } catch (err) {
       res.status(500).json({ message: err.message })
     }

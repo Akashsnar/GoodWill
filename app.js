@@ -385,7 +385,6 @@ app.post('/reviews',async(req,res)=>{
 
 
 
-
 //data parsing
 app.use(express.urlencoded({
     extended: false
@@ -500,14 +499,14 @@ app.get("/ngodetails", async(req, res)=>{
 
 app.post("/ngodetails", async(req, res)=>{
 
-  const id = (req.body.checkbox);
 // const result =  await deleteOne({_id:new mongodb.ObjectId(id)});
-
-  console.log("post ho taha hai"+req.body.checkbox);
   const it=req.body.checkbox;
+  console.log(typeof it);
+
+
   ngoschemaregist.findByIdAndDelete(it)
-  .then(function (it) {
-   console.log("bloody pass");
+  .then(function () {
+   console.log("bloody pass"+it);
    res.redirect("/ngodetails"); 
     })
     .catch(function (err) {
@@ -517,6 +516,12 @@ app.post("/ngodetails", async(req, res)=>{
 })
 
 
+// app.post('/antsant',async(req,res)=>{
+//   console.log("post ho taha hai");
+//   res.send("hi lol"+req.body.checkbox);
+  
+//   })
+
 
 
 app.get("/userdetails", async(req, res)=>{
@@ -524,7 +529,7 @@ app.get("/userdetails", async(req, res)=>{
   res.render("userdetails", {userd:userd});
 })
 
-app.post("/userdetails", (req, res)=>{
+app.post('/userdetails', (req, res)=>{
   console.log("post ho taha hai");
   const it=req.body.checkbox;
   mongoschema.findByIdAndDelete(it)
@@ -537,6 +542,8 @@ app.post("/userdetails", (req, res)=>{
     
   })
 })
+
+  
 
 
 app.get("/reviewdetails", async(req, res)=>{
