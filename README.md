@@ -11,7 +11,8 @@ Running the project
 To run the project, simply navigate to the website URL in your web browser.
 1.  	Git clone https://github.com/Akashsnar/GoodWill.git
 2.  	Open the project folder
-3.  	Open the terminal and run
+3.  	run npm install
+4.  	Open the terminal and run
 the following commands:
 4.  	npm install
 5.  	node app.js
